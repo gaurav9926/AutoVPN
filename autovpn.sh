@@ -8,6 +8,11 @@
 
 chmod +x $0
 
+if [[ $(whoami) != "root" ]]; then
+	sudo "$0" "$@"
+	exit
+fi
+
 usr=$1;
 passwd=$2;
 
@@ -75,7 +80,7 @@ expect <<- DONE
 
 	expect "Initialization Sequence Completed"
 
-	
+
 	interact;
 DONE
 
